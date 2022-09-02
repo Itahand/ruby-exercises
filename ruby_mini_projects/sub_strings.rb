@@ -1,14 +1,21 @@
 dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
 
-def sub_strings(strings, dictionary)
+def substrings(strings, dictionary)
 
-  # Iterate through the dictionary array
-  dictionary.map { |word|
-    # Evaluate if the current word is in the input strings
-    puts word if strings[word]
-    # Add the word to a Hash and increase its value by 1
-  }
+  result = Hash.new(0)
+  # Change everything to lowercase
+  lowered_strings = strings.downcase
 
+  dictionary.each do |word|
+    # Iterate through the strings and compare each to the word from dictionary
+    # The amount of times a string matches with the word is returned as a variable
+    matches = lowered_strings.scan(word).length
+    # If the amount is not 0 it is added to the result.
+    result[word] = matches unless matches == 0
+  end
+  puts result
+  return result
 end
 
-sub_strings("below", dictionary)
+
+substrings("below low down", dictionary)
